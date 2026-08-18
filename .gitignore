@@ -1,0 +1,72 @@
+# OS and IDE
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+
+# Secrets: keep real credentials outside the repository
+.env
+.env.*
+!.env.example
+*.token
+*.secret
+*credentials*.json
+*secrets*.json
+tikhub_config.json
+config.local.json
+
+# Private runtime state and creator/project information
+/.xhs-agent/
+/workbench/
+/data/
+/output/
+/temp/
+/runs/
+/private/
+/local/
+
+# Local logs and exports may contain creator or brand information
+*.log
+/exports/
+
+# User-supplied briefs, scripts, screenshots, media, and data exports are private by default
+*.pdf
+*.doc
+*.docx
+*.xls
+*.xlsx
+*.csv
+*.tsv
+*.ppt
+*.pptx
+*.pages
+*.numbers
+*.key
+*.png
+*.jpg
+*.jpeg
+*.heic
+*.webp
+*.gif
+*.mp4
+*.mov
+*.m4v
+*.mp3
+*.m4a
+*.wav
+
+# Curated, reviewed repository assets and synthetic fixtures may be committed
+!packages/xhs-creator-workbench/assets/**
+!docs/assets/**
+!tests/fixtures/**

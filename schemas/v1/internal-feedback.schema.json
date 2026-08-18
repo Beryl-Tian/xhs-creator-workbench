@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/internal-feedback.schema.json",
+  "title": "Internal Feedback",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "feedback_id", "project_id", "target_type", "target_id", "raw_feedback", "created_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "feedback_id": {"$ref": "common.schema.json#/$defs/id"},
+    "project_id": {"$ref": "common.schema.json#/$defs/id"},
+    "target_type": {"enum": ["outline", "publication_copy"]},
+    "target_id": {"$ref": "common.schema.json#/$defs/id"},
+    "raw_feedback": {"type": "string", "minLength": 1},
+    "result_object_id": {"oneOf": [{"$ref": "common.schema.json#/$defs/id"}, {"type": "null"}]},
+    "created_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

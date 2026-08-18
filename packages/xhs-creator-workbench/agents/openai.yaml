@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书创作工作台"
+  short_description: "分析博主、生成品牌大纲并归档发布内容的本地智能工作台"
+  default_prompt: "使用 $xhs-creator-workbench 分析我的账号，并开始一个可追踪的品牌内容项目。"

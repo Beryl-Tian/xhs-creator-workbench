@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/learning-candidate.schema.json",
+  "title": "Learning Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "creator_id", "project_id", "scope", "statement", "reason", "evidence_refs", "counter_evidence_refs", "confidence", "status", "created_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "candidate_id": {"$ref": "common.schema.json#/$defs/id"},
+    "creator_id": {"$ref": "common.schema.json#/$defs/id"},
+    "project_id": {"$ref": "common.schema.json#/$defs/id"},
+    "scope": {"enum": ["project_only", "brand", "category", "commercial", "organic", "global"]},
+    "statement": {"type": "string", "minLength": 1},
+    "reason": {"type": "string", "minLength": 1},
+    "evidence_refs": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/evidence_ref"}},
+    "counter_evidence_refs": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/evidence_ref"}},
+    "confidence": {"$ref": "common.schema.json#/$defs/confidence"},
+    "status": {"enum": ["proposed", "accepted", "rejected", "promoted", "superseded"]},
+    "review_note": {"type": ["string", "null"]},
+    "created_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

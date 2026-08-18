@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/baseline-calibration.schema.json",
+  "title": "Creator Baseline Human Calibration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "calibration_id", "creator_id", "source_baseline_id", "result_baseline_id", "desired_positioning", "target_audience", "accepted_review_questions", "remaining_review_questions", "recorded_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "calibration_id": {"$ref": "common.schema.json#/$defs/id"},
+    "creator_id": {"$ref": "common.schema.json#/$defs/id"},
+    "source_baseline_id": {"$ref": "common.schema.json#/$defs/id"},
+    "result_baseline_id": {"$ref": "common.schema.json#/$defs/id"},
+    "desired_positioning": {"type": "string", "minLength": 1},
+    "target_audience": {"type": "string", "minLength": 1},
+    "commercial_guardrail": {"type": ["string", "null"]},
+    "accepted_review_questions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "rejected_review_questions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "remaining_review_questions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "note": {"type": ["string", "null"]},
+    "recorded_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/publication-copy.schema.json",
+  "title": "Publication Copy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "copy_id", "project_id", "version", "approved_outline_id", "title_options", "body", "tags", "brief_coverage", "created_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "copy_id": {"$ref": "common.schema.json#/$defs/id"},
+    "project_id": {"$ref": "common.schema.json#/$defs/id"},
+    "version": {"type": "integer", "minimum": 1},
+    "approved_outline_id": {"$ref": "common.schema.json#/$defs/id"},
+    "title_options": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "body": {"type": "string", "minLength": 1},
+    "tags": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "brief_coverage": {"type": "array", "items": {"type": "string"}},
+    "created_from_feedback_id": {"oneOf": [{"$ref": "common.schema.json#/$defs/id"}, {"type": "null"}]},
+    "risks": {"type": "array", "items": {"type": "string"}},
+    "created_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

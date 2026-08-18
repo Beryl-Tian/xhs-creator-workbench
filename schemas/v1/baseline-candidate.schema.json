@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/baseline-candidate.schema.json",
+  "title": "AI Creator Baseline Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "creator_id", "run_id", "summary", "findings", "missing_dimensions", "human_review_questions", "limitations"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "creator_id": {"$ref": "common.schema.json#/$defs/id"},
+    "run_id": {"$ref": "common.schema.json#/$defs/id"},
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["one_line_positioning", "audience", "content_identity", "commercial_identity"],
+      "properties": {
+        "one_line_positioning": {"$ref": "#/$defs/summary_item"},
+        "audience": {"$ref": "#/$defs/summary_item"},
+        "content_identity": {"$ref": "#/$defs/summary_item"},
+        "commercial_identity": {"$ref": "#/$defs/summary_item"}
+      }
+    },
+    "findings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "finding_type", "statement", "epistemic_status", "confidence", "evidence_refs", "counter_evidence_refs", "applicable_to", "limitations"],
+        "properties": {
+          "category": {"enum": ["positioning", "audience", "cognition", "strategy", "organic", "commercial", "voice", "visual", "guardrail"]},
+          "finding_type": {"enum": ["positioning", "audience_need", "content_pillar", "core_belief", "viewpoint_tension", "mental_model", "value_stance", "content_series", "topical_strategy", "operating_hypothesis", "title_formula", "opening_pattern", "body_structure", "emotional_arc", "language_dna", "cta_pattern", "tag_strategy", "publishing_cadence", "commercial_integration", "commercial_difference", "must_keep", "avoid", "unknown_visual"]},
+          "statement": {"type": "string", "minLength": 1},
+          "epistemic_status": {"enum": ["observed", "inferred"]},
+          "confidence": {"$ref": "common.schema.json#/$defs/confidence"},
+          "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/id"}},
+          "counter_evidence_refs": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/id"}},
+          "applicable_to": {"type": "array", "items": {"enum": ["creator_understanding", "topic_selection", "commercial_route", "commercial_outline", "publication_copy", "review", "archive_learning"]}},
+          "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        }
+      }
+    },
+    "missing_dimensions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "human_review_questions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  },
+  "$defs": {
+    "summary_item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "evidence_refs", "limitations"],
+      "properties": {
+        "statement": {"type": "string", "minLength": 1},
+        "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/id"}},
+        "limitations": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

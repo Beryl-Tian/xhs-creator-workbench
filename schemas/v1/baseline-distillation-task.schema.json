@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/baseline-distillation-task.schema.json",
+  "title": "Creator Baseline Distillation Task",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "task_type", "creator_id", "run_id", "status", "profile", "deterministic_analysis", "materials", "protocol", "candidate_output", "instructions"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "task_type": {"const": "creator_baseline_distillation"},
+    "creator_id": {"$ref": "common.schema.json#/$defs/id"},
+    "run_id": {"$ref": "common.schema.json#/$defs/id"},
+    "status": {"enum": ["ready", "blocked_by_quality_gate"]},
+    "profile": {"type": "object"},
+    "deterministic_analysis": {"type": "object"},
+    "materials": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normalized_notes_path", "evidence_path", "note_evidence_count", "comment_evidence_count"],
+      "properties": {
+        "normalized_notes_path": {"type": "string", "minLength": 1},
+        "evidence_path": {"type": "string", "minLength": 1},
+        "note_evidence_count": {"type": "integer", "minimum": 1},
+        "comment_evidence_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "protocol": {"type": "string", "minLength": 1},
+    "candidate_output": {"type": "string", "minLength": 1},
+    "instructions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+  }
+}

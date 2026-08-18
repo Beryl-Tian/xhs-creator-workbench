@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/approval.schema.json",
+  "title": "Brand Approval",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "approval_id", "project_id", "submission_id", "track", "approved_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "approval_id": {"$ref": "common.schema.json#/$defs/id"},
+    "project_id": {"$ref": "common.schema.json#/$defs/id"},
+    "submission_id": {"$ref": "common.schema.json#/$defs/id"},
+    "track": {"enum": ["outline", "publication_copy"]},
+    "approved_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "confirmation_source": {"type": ["string", "null"]},
+    "note": {"type": ["string", "null"]}
+  }
+}

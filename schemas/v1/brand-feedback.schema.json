@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/brand-feedback.schema.json",
+  "title": "Brand Feedback",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "feedback_id", "project_id", "submission_id", "raw_sources", "items", "received_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "feedback_id": {"$ref": "common.schema.json#/$defs/id"},
+    "project_id": {"$ref": "common.schema.json#/$defs/id"},
+    "submission_id": {"$ref": "common.schema.json#/$defs/id"},
+    "raw_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {"type": "string", "minLength": 1},
+          {"$ref": "common.schema.json#/$defs/file_ref"}
+        ]
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["item_id", "location", "request", "type", "understanding", "resolution_status"],
+        "properties": {
+          "item_id": {"$ref": "common.schema.json#/$defs/id"},
+          "location": {"type": ["string", "null"]},
+          "request": {"type": "string", "minLength": 1},
+          "type": {"enum": ["structure", "selling_point", "wording", "compliance", "creator_fit", "other"]},
+          "understanding": {"enum": ["clear", "ambiguous", "creator_conflict"]},
+          "resolution_status": {"enum": ["pending", "resolved", "partial", "not_applied", "needs_confirmation"]},
+          "resolution_note": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "received_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

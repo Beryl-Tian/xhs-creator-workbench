@@ -1,0 +1,60 @@
+name: Bug report
+description: 报告可复现且已经脱敏的功能问题
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。请勿粘贴真实 Token、Cookie、博主资料、评论、品牌 Brief、反馈、脚本、发布文案、截图或附件。安全漏洞请使用 Security 页面中的私密报告入口。
+
+  - type: input
+    id: version
+    attributes:
+      label: 版本或 commit
+      placeholder: 例如 0.1.0.dev0 或 commit SHA
+    validations:
+      required: true
+
+  - type: dropdown
+    id: python
+    attributes:
+      label: Python 版本
+      options:
+        - "3.11"
+        - "3.12"
+        - "3.13"
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 请使用合成数据描述最小复现步骤。
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 日志和堆栈必须先脱敏。
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 隐私确认
+      options:
+        - label: 我已确认本 Issue 不包含真实业务数据、个人信息、Token、Cookie 或其他凭据。
+          required: true

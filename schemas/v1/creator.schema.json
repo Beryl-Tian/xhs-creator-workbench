@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/creator.schema.json",
+  "title": "Creator",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "creator_id", "display_name", "platform_accounts", "is_primary", "created_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "creator_id": {"$ref": "common.schema.json#/$defs/id"},
+    "display_name": {"type": "string", "minLength": 1},
+    "platform_accounts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["platform", "account_id"],
+        "properties": {
+          "platform": {"const": "xiaohongshu"},
+          "account_id": {"type": "string", "minLength": 1},
+          "profile_url": {"type": ["string", "null"], "format": "uri"}
+        }
+      }
+    },
+    "is_primary": {"type": "boolean"},
+    "created_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

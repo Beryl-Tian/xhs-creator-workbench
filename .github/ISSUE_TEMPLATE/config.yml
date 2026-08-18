@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 私下报告安全漏洞
+    url: https://github.com/Beryl-Tian/xhs-creator-workbench/security/advisories/new
+    about: 请勿公开尚未修复的漏洞或任何敏感数据。

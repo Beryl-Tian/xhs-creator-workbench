@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/run.schema.json",
+  "title": "Run Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "operation", "status", "inputs", "outputs", "steps", "started_at", "updated_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "run_id": {"$ref": "common.schema.json#/$defs/id"},
+    "operation": {"type": "string", "minLength": 1},
+    "status": {"enum": ["pending", "running", "waiting_for_agent", "waiting_for_user", "completed", "failed"]},
+    "inputs": {"type": "object"},
+    "outputs": {"type": "object"},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "status"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "status": {"enum": ["pending", "running", "completed", "failed", "skipped"]},
+          "error": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "error_code": {"type": ["string", "null"]},
+    "recovery_hint": {"type": ["string", "null"]},
+    "started_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "updated_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

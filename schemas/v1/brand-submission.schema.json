@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/brand-submission.schema.json",
+  "title": "Brand Submission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "submission_id", "project_id", "track", "round", "source_object_id", "submitted_content", "submitted_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "submission_id": {"$ref": "common.schema.json#/$defs/id"},
+    "project_id": {"$ref": "common.schema.json#/$defs/id"},
+    "track": {"enum": ["outline", "publication_copy"]},
+    "round": {"type": "integer", "minimum": 1},
+    "source_object_id": {"$ref": "common.schema.json#/$defs/id"},
+    "submitted_content": {"type": "object"},
+    "source_file": {"oneOf": [{"$ref": "common.schema.json#/$defs/file_ref"}, {"type": "null"}]},
+    "submitted_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "corrects_submission_id": {"oneOf": [{"$ref": "common.schema.json#/$defs/id"}, {"type": "null"}]}
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/brief-extraction.schema.json",
+  "title": "Brief Extraction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "extraction_id", "project_id", "source_file", "text", "blocks", "warnings", "extracted_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "extraction_id": {"$ref": "common.schema.json#/$defs/id"},
+    "project_id": {"$ref": "common.schema.json#/$defs/id"},
+    "source_file": {"$ref": "common.schema.json#/$defs/file_ref"},
+    "text": {"type": "string", "minLength": 1},
+    "blocks": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["locator", "text"], "properties": {"locator": {"type": "string", "minLength": 1}, "text": {"type": "string", "minLength": 1}}}},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "extracted_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

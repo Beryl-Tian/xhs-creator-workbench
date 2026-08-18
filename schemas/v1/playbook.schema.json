@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/playbook.schema.json",
+  "title": "Confirmed Creator Playbook",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "creator_id", "baseline_id", "core_thesis", "current_content_axes", "legacy_capabilities", "route_patterns", "title_formulas", "body_templates", "language_kit", "commercial_rules", "audience_translation", "review_checklist", "limitations", "playbook_id", "version", "review_status", "source_run_id", "created_at"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "creator_id": {"$ref": "common.schema.json#/$defs/id"},
+    "baseline_id": {"$ref": "common.schema.json#/$defs/id"},
+    "core_thesis": {"type": "object"},
+    "current_content_axes": {"type": "array"},
+    "legacy_capabilities": {"type": "array"},
+    "route_patterns": {"type": "array"},
+    "title_formulas": {"type": "array"},
+    "body_templates": {"type": "array"},
+    "language_kit": {"type": "object"},
+    "commercial_rules": {"type": "object"},
+    "audience_translation": {"type": "object"},
+    "review_checklist": {"type": "array"},
+    "limitations": {"type": "array"},
+    "playbook_id": {"$ref": "common.schema.json#/$defs/id"},
+    "version": {"type": "integer", "minimum": 1},
+    "review_status": {"enum": ["pending_confirmation", "confirmed", "superseded"]},
+    "source_run_id": {"$ref": "common.schema.json#/$defs/id"},
+    "created_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "confirmed_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "confirmation_note": {"type": ["string", "null"]}
+  }
+}

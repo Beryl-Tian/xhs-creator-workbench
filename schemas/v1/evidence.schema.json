@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xhs-workbench.local/schemas/v1/evidence.schema.json",
+  "title": "Evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evidence_id", "creator_id", "kind", "source_id", "captured_at", "quality"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "evidence_id": {"$ref": "common.schema.json#/$defs/id"},
+    "creator_id": {"$ref": "common.schema.json#/$defs/id"},
+    "kind": {
+      "enum": ["profile", "collection_quality", "note", "comment", "transcript", "oral_script", "published_copy", "brand_feedback", "human_confirmation", "performance"]
+    },
+    "source_id": {"type": "string", "minLength": 1},
+    "captured_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "published_at": {"oneOf": [{"$ref": "common.schema.json#/$defs/timestamp"}, {"type": "null"}]},
+    "content_excerpt": {"type": ["string", "null"]},
+    "metrics": {"type": "object", "additionalProperties": {"type": ["number", "integer", "null"]}},
+    "source_ref": {"type": ["string", "null"]},
+    "quality": {"enum": ["complete", "partial", "restricted", "failed"]}
+  }
+}
