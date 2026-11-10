@@ -10,7 +10,7 @@ readme = "README.md"
 license = { file = "LICENSE" }
 authors = [{ name = "BerylTian" }]
 requires-python = ">=3.11"
-dependencies = ["pypdf>=5,<7"]
+dependencies = ["pypdf>=5,<8"]
 keywords = ["codex", "creator-workflow", "local-first", "xiaohongshu"]
 classifiers = [
     "Development Status :: 3 - Alpha",
